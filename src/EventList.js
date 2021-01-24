@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Event from "./Event";
-import { mockData } from './mock-data';
+// import { mockData } from './mock-data';
 
 class EventList extends Component {
   render() {
-    const events = mockData;
+    // const events = mockData;
     const { events } = this.props;
     return (
       <ul className="EventList">
