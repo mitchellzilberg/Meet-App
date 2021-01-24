@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 import { mockData } from "./mock-data";
 import NProgress from "nprogress";
 
@@ -21,27 +21,26 @@ const checkToken = async (accessToken) => {
 export const getEvents = async () => {
   NProgress.start();
 
+  if (
+    !navigator.onLine &&
+    !window.location.href.startsWith("http://localhost")
+  ) {
+    const events = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return JSON.parse(events).events;
+  }
+
   if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
     return mockData;
   }
-
-  if (!navigator.onLine) {
-    const events = localStorage.getItem("lastEvents");
-    NProgress.done() ;
-    return {
-      events: JSON.parse(events).events,
-      locations: extractLocations(JSON.parse(events).events)
-    };
-  }
-
 
   const token = await getAccessToken();
 
   if (token) {
     removeQuery();
     const url = `https://jwyioruftd.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${token}`;
-    const result = await Axios.get(url);
+    const result = await axios.get(url);
     if (result.data) {
       let locations = extractLocations(result.data.events);
       localStorage.setItem("lastEvents", JSON.stringify(result.data));
@@ -60,7 +59,7 @@ export const getAccessToken = async () => {
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get("code");
     if (!code) {
-      const results = await Axios.get(
+      const results = await axios.get(
         "https://jwyioruftd.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
       );
       const { authUrl } = results.data;

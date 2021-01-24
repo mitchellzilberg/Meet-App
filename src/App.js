@@ -24,11 +24,10 @@
 
 // export default App;
 
-
 import React, { Component } from "react";
-// import "./nprogress.css";
+import "./nprogress.css";
 import "./App.css";
-// import EventList from "./EventList";
+import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { extractLocations, getEvents } from "./api";
@@ -50,7 +49,7 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     currentLocation: "all",
-    // alertText: "",
+    alertText: "",
   };
 
   updateEvents = (location, eventCount) => {
@@ -92,19 +91,19 @@ class App extends Component {
         });
       }
     });
-    // window.addEventListener("online", this.offlineAlert());
+    window.addEventListener("online", this.offlineAlert());
   }
 
-  // offlineAlert = () => {
-  //   if (navigator.onLine === false) {
-  //     this.setState({
-  //       alertText:
-  //         "You are currently offline. Please connect to the internet for an updated list of events",
-  //     });
-  //   } else {
-  //     this.setState({ alertText: "" });
-  //   }
-  // };
+  offlineAlert = () => {
+    if (navigator.onLine === false) {
+      this.setState({
+        alertText:
+          "You are currently offline. Please connect to the internet for an updated list of events",
+      });
+    } else {
+      this.setState({ alertText: "" });
+    }
+  };
 
   componentWillUnmount() {
     this.mounted = false;
@@ -125,6 +124,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Meet-Us</h1>
+        <OfflineAlert text={this.state.alertText} />
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
@@ -134,10 +134,27 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />
         <div className="data-vis-wrapper">
+          <EventGenre
+            locations={this.state.locations}
+            events={this.state.events}
+          />
           <h4>Events in each city</h4>
-
+          <ResponsiveContainer height={400}>
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis
+                type="number"
+                dataKey="number"
+                name="number of events"
+                allowDecimals={false}
+              />
+              <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
         </div>
-        {/* <EventList events={this.state.events} /> */}
+        <EventList events={this.state.events} />
       </div>
     );
   }
