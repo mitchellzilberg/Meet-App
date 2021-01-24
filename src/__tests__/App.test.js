@@ -93,3 +93,16 @@ test("change list of events after user updates number", () => {
   expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(null, 1);
   AppWrapper.unmount();
 });
+
+// import React from 'react';
+// import { shallow } from 'enzyme';
+// import App from '../App';
+
+
+// describe('<App /> component', () => {
+
+//   test('render list of events', () => {
+//     const AppWrapper = shallow(<App />);
+//     expect(AppWrapper.find(EventList)).toHaveLength(1);
+//   });
+// });
