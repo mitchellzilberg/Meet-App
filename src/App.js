@@ -92,7 +92,7 @@ class App extends Component {
         });
       }
     });
-    window.addEventListener("online", this.offlineAlert());
+    // window.addEventListener("online", this.offlineAlert());
   }
 
   // offlineAlert = () => {
