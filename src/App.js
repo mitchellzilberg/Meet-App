@@ -5,7 +5,7 @@ import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { extractLocations, getEvents } from "./api";
-// import { OfflineAlert } from "./Alert";
+import { OfflineAlert } from "./Alert";
 // import {
 //   ScatterChart,
 //   Scatter,
@@ -97,8 +97,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Meet-Us</h1>
-        {/* <OfflineAlert text={this.state.alertText} /> */}
+        <h1>Meet-App</h1>
+        <OfflineAlert text={this.state.alertText} />
         <NumberOfEvents
           numberOfEvents={this.state.numberOfEvents}
           updateEvents={this.updateEvents}
