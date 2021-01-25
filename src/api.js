@@ -21,20 +21,27 @@ const checkToken = async (accessToken) => {
 export const getEvents = async () => {
   NProgress.start();
 
-  if (
-    !navigator.onLine &&
-    !window.location.href.startsWith("http://localhost")
-  ) {
+  // if (
+  //   !navigator.onLine &&
+  //   !window.location.href.startsWith("http://localhost")
+  // ) {
+  //   const events = localStorage.getItem("lastEvents");
+  //   NProgress.done();
+  //   return JSON.parse(events).events;
+  // }
+
+  // if (window.location.href.startsWith("http://localhost")) {
+  //   NProgress.done();
+  //   return mockData;
+  // }
+  
+  if(!navigator.onLine) {
     const events = localStorage.getItem("lastEvents");
+  
     NProgress.done();
-    return JSON.parse(events).events;
+    return { events: JSON.parse(events).events, locations: extractLocations(JSON.parse(events).events)};
   }
-
-  if (window.location.href.startsWith("http://localhost")) {
-    NProgress.done();
-    return mockData;
-  }
-
+  
   const token = await getAccessToken();
 
   if (token) {
