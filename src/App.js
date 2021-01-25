@@ -99,12 +99,12 @@ class App extends Component {
       <div className="App">
         <h1>Meet-Us</h1>
         {/* <OfflineAlert text={this.state.alertText} /> */}
-        <CitySearch
-          locations={this.state.locations}
-          updateEvents={this.updateEvents}
-        />
         <NumberOfEvents
           numberOfEvents={this.state.numberOfEvents}
+          updateEvents={this.updateEvents}
+        />
+        <CitySearch
+          locations={this.state.locations}
           updateEvents={this.updateEvents}
         />
         <div className="data-vis-wrapper">
