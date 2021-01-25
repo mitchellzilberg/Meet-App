@@ -62,7 +62,7 @@ class App extends Component {
     if (navigator.onLine === false) {
       this.setState({
         alertText:
-          "You are currently offline. Please connect to the internet for an updated list of events",
+          "You are currently offline. To update the list of events, you must connect to the internet.",
       });
     } else {
       this.setState({ alertText: "" });
