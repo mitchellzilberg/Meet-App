@@ -5,17 +5,7 @@ import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { extractLocations, getEvents } from "./api";
-// import { OfflineAlert } from "./Alert";
-// import {
-//   ScatterChart,
-//   Scatter,
-//   XAxis,
-//   YAxis,
-//   CartesianGrid,
-//   Tooltip,
-//   ResponsiveContainer,
-// } from "recharts";
-// import EventGenre from "./EventGenre";
+import { OfflineAlert } from "./Alert";
 
 class App extends Component {
   state = {
@@ -98,7 +88,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Meet-Us</h1>
-        {/* <OfflineAlert text={this.state.alertText} /> */}
+        <OfflineAlert text={this.state.alertText} />
         <NumberOfEvents
           numberOfEvents={this.state.numberOfEvents}
           updateEvents={this.updateEvents}
