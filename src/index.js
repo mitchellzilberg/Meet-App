@@ -7,14 +7,20 @@ import * as serviceWorker from './serviceWorker';
 // import * as atatus from 'atatus-js';
 import * as atatus from 'atatus-spa';
 
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />, 
   document.getElementById('root')
-);
+  );
 
 
-serviceWorker.unregister();
+serviceWorker.register();
+// serverWorker.unregister();
 atatus.config('259ee5e9bb574eb9b4abee9ee76ecacc').install();
 
