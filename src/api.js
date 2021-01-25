@@ -21,27 +21,26 @@ const checkToken = async (accessToken) => {
 export const getEvents = async () => {
   NProgress.start();
 
+  if (
+    !navigator.onLine &&
+    !window.location.href.startsWith("http://localhost")
+  ) {
+    const events = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return JSON.parse(events).events;
+  }
+
   if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
     return mockData;
   }
-
-  if (!navigator.onLine) {
-    const events = localStorage.getItem("lastEvents");
-    NProgress.done() ;
-    return {
-      events: JSON.parse(events).events,
-      locations: extractLocations(JSON.parse(events).events)
-    };
-  }
-
 
   const token = await getAccessToken();
 
   if (token) {
     removeQuery();
     const url = `https://jwyioruftd.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${token}`;
-    const result = await Axios.get(url);
+    const result = await axios.get(url);
     if (result.data) {
       let locations = extractLocations(result.data.events);
       localStorage.setItem("lastEvents", JSON.stringify(result.data));
