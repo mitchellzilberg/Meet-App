@@ -6,15 +6,15 @@ import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { extractLocations, getEvents } from "./api";
 import { OfflineAlert } from "./Alert";
-// import {
-//   ScatterChart,
-//   Scatter,
-//   XAxis,
-//   YAxis,
-//   CartesianGrid,
-//   Tooltip,
-//   ResponsiveContainer,
-// } from "recharts";
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 // import EventGenre from "./EventGenre";
 
 class App extends Component {
@@ -95,6 +95,7 @@ class App extends Component {
   };
 
   render() {
+    // const { locations, numberOfEvents, events } = this.state;
     return (
       <div className="App">
         <h1>Meet-App</h1>
@@ -110,6 +111,15 @@ class App extends Component {
         <div className="data-vis-wrapper">
           <h4>Events in each city</h4>
         </div>
+        <ResponsiveContainer height={400}>
+          <ScatterChart margin={{top: 20, right: 20, bottom: 20, left: 20,}}>
+            <CartesianGrid />
+            <XAxis type='category' dataKey='city' name='city' />
+            <YAxis type='number' dataKey='number' name='number of events' allowDecimals={false} />
+            <Tooltip cursor={{strokeDasharray: '3 3'}} />
+            <Scatter data={this.getData()} fill="#8884d8" />
+          </ScatterChart>
+        </ResponsiveContainer>
         <EventList events={this.state.events} />
       </div>
     );
