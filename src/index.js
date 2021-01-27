@@ -7,9 +7,7 @@ import * as serviceWorker from './serviceWorker';
 // import * as atatus from 'atatus-js';
 import * as atatus from 'atatus-spa';
 
-
 ReactDOM.render(<App />, document.getElementById('root'));
-
 
 serviceWorker.register();
 // serviceWorker.unregister();

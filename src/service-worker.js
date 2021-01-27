@@ -1,10 +1,18 @@
 /* eslint-disable no-restricted-globals */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 55f603575914e0e0f7fd530eeac7c7b63b78ecbe
 // This service worker can be customized!
 // See https://developers.google.com/web/tools/workbox/modules
 // for the list of available Workbox modules, or add any other
 // code you'd like.
 // You can also remove this file if you'd prefer not to use a
 // service worker, and the Workbox build step will be skipped.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 55f603575914e0e0f7fd530eeac7c7b63b78ecbe
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
